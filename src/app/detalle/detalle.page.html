@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>detalle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-label>Marca</ion-label>
+    <ion-input [(ngModel)]="document.data.marca"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Modelo</ion-label>
+    <ion-input [(ngModel)]="document.data.modelo"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Anno</ion-label>
+    <ion-input [(ngModel)]="document.data.anno"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Pais</ion-label>
+    <ion-input [(ngModel)]="document.data.pais"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Precio</ion-label>
+    <ion-input [(ngModel)]="document.data.precio"></ion-input>
+  </ion-item >
+
+  <ion-item>
+    <ion-label>Imagen</ion-label>
+    <img src="{{document.data.imagen}}">
+  </ion-item >
+
+  <ion-button id ="Añadir" *ngIf= "id =='C'" (click)="clickBotonInsertar()">Añadir</ion-button>
+  
+  <ion-button id ="Borrar" *ngIf= "id !='C'" (click)="presentAlert()">Borrar</ion-button>
+
+  <ion-button id ="Modificar" *ngIf= "id !='C'" (click)="clicBotonModificar()">Modificar</ion-button>
+
+  <ion-button id ="Subir Foto"  (click)="uploadImagePicker()">Subir Foto</ion-button>
+
+  <!-- <ion-button id ="Borrar Foto" (click)="deleteFile()">Borrar Foto</ion-button> -->
+
+
+  <ion-button id ="Volver" (click)="clicBotonVolver()">Volver</ion-button>
+
+  
+</ion-content>
+

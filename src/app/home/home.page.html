@@ -1,20 +1,34 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Ejemplo Firestore
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <h1>Lista de coches</h1>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-grid>
+  <ion-row>
+
+    <!-- <img alt="coches" src="{{ documentCoche.data.marca }}">Coche</img>  -->
+    <ion-col *ngFor="let documentCoche of arrayColeccionCoches" (click)="selecCoche(documentCoche)">
+      <ion-grid>
+        <ion-row>
+          <h2> {{ documentCoche.data.marca }}</h2>
+        </ion-row>
+        <ion-row>
+          <p>{{ documentCoche.data.modelo }}</p>
+        </ion-row>
+        <ion-row>
+          <img src="{{ documentCoche.data.imagen }}"> 
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+  <ion-fab-button (click)="clickBotonInsertar()">+</ion-fab-button>
 </ion-content>
