@@ -25,3 +25,20 @@
 #container a {
   text-decoration: none;
 }
+
+.color{
+  --ion-background-color: aliceblue;
+}
+
+.imagenP{
+  height: 200px;
+}
+
+.llamada{ 
+
+  font-size: 300%;
+  position: fixed;
+  bottom: 60px;
+  right: 80px;
+  --background: #2736DB;
+}

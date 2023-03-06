@@ -4,6 +4,11 @@ import { Coche } from '../coche';
 import { FirestoreService } from '../firestore.service';
 import { Router } from '@angular/router';
 
+import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
+
+
+
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -11,13 +16,16 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
+  // newMarker:any;
+  // address:string[];
+
   cocheEditando: Coche;
   arrayColeccionCoches: any = [{
     id: "",
     data: {} as Coche
   }];
 
-  constructor(private firestoreService: FirestoreService, private router: Router) {
+  constructor(private firestoreService: FirestoreService, private router: Router, private callNumber: CallNumber ) {
     // crear un coche vacio al empezar
     this.cocheEditando = {} as Coche;
 
@@ -59,5 +67,15 @@ export class HomePage {
     this.router.navigate(['/detalle', this.idCocheSelec]);
   }
 
-  
+    llamar(){
+      
+      this.callNumber.callNumber("18001010101", true)
+      .then(res => console.log('Launched dialer!', res))
+      .catch(err => console.log('Error launching dialer', err));
+
+}
+
+
+
+
 }

@@ -1,12 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start" (click)="clickBotonInsertar()"><ion-icon name="filter-outline"></ion-icon></ion-buttons>
     <ion-title>
       Ejemplo Firestore
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="color">
   <h1>Lista de coches</h1>
 
 <ion-grid>
@@ -22,13 +23,29 @@
           <p>{{ documentCoche.data.modelo }}</p>
         </ion-row>
         <ion-row>
-          <img src="{{ documentCoche.data.imagen }}"> 
+          <img class="imagenP" src="{{ documentCoche.data.imagen }}"> 
         </ion-row>
+
       </ion-grid>
     </ion-col>
   </ion-row>
 </ion-grid>
-
-
-  <ion-fab-button (click)="clickBotonInsertar()">+</ion-fab-button>
+  <ion-fab-button (click)="llamar()" class="llamada"><ion-icon name="call"></ion-icon></ion-fab-button>
+  
 </ion-content>
+  
+<ion-toolbar>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home">
+        <ion-icon name="home" id="icons"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="pagina2">
+        <ion-icon name="information-circle" id="icons"></ion-icon>
+        <ion-label>Informacion</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-toolbar>
+

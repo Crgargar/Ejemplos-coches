@@ -8,6 +8,9 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
 import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
 import { resourceLimits } from 'worker_threads';
 
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
+
+
 
 @Component({
   selector: 'app-detalle',
@@ -32,7 +35,7 @@ export class DetallePage implements OnInit {
 
 
   constructor(private activatedRoute: ActivatedRoute,private firestoreService: FirestoreService, private router: Router, private alertController: AlertController, 
-    private loadingController: LoadingController, private toastController: ToastController, private imagePicker: ImagePicker) { 
+    private loadingController: LoadingController, private toastController: ToastController, private imagePicker: ImagePicker, private socialSharing: SocialSharing) { 
    }
 
   ngOnInit() {
@@ -103,7 +106,13 @@ export class DetallePage implements OnInit {
           text: 'OK',
           role: 'confirm',
           handler: () => {
+            this.deleteFile(this.document.data.imagen);
             this.handlerMessage = 'Alert confirmed';
+            this.firestoreService.borrar("coche", this.id).then(() => {
+              this.document.data = {} as Coche;
+              console.log("HOLA" + this.id);
+            })
+            this.router.navigate(['/home']);
           },
         },
       ],
@@ -113,11 +122,6 @@ export class DetallePage implements OnInit {
 
     const { role } = await alert.onDidDismiss();
     this.roleMessage = `Dismissed with role: ${role}`;
-
-      this.firestoreService.borrar("coches", this.id).then(() => {
-        this.document.data = {} as Coche;
-      })
-      this.router.navigate(['/home']);
 
     }
   async uploadImagePicker(){
@@ -195,4 +199,13 @@ export class DetallePage implements OnInit {
         console.log(err);
       });
     }
+
+    regularSharing() {
+      this.socialSharing.share(`Nombre: ${this.document.data.marca } '/n' Marca: ${this.document.data.modelo}` , null, null, null).then(() => {
+        console.log("Se ha compartido correctamente");
+      }).catch((error) => {
+        console.log("Se ha producido un error: " + error);
+      });
+    }
+    
 }
